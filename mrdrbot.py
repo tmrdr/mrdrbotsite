@@ -1,14 +1,11 @@
 
 import markovify
 import tweepy
-import env
+from env import keys
 from random import randint
 from time import sleep
 
-with open ("botfood.txt") as botfood_file:
-    botfood = botfood_file.read()
 
-model = markovify.Text(botfood)
 
 oldtext = []
 back = []
@@ -18,11 +15,11 @@ class TwitterAPI:
     def __init__(self, botfood):
         self.load_botfood(botfood)
 
-        consumer_key = env.consumer_key
-        consumer_secret = env.consumer_secret
+        consumer_key = keys['consumer_key']
+        consumer_secret = keys['consumer_secret']
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-        access_token = env.access_token
-        access_token_secret = env.access_token_secret
+        access_token = keys['access_token']
+        access_token_secret = keys['access_token_secret']
         auth.set_access_token(access_token, access_token_secret)
         self.api = tweepy.API(auth)
 
@@ -42,22 +39,35 @@ class TwitterAPI:
                     self.tweet(toReply)
                     back.insert(0, tweet.user.screen_name)
 
+    def follow(self):
+        for follower in tweepy.Cursor(self.api.followers).items():
+            follower.follow()
+            print (follower.screen_name)
+
 
 
     def timeline(self):
         public_tweets = self.api.home_timeline()
+        with open ("botfood.txt", "r") as botfood_file:
+            botfood = botfood_file.read()
+            model = markovify.Text(botfood)
         # print(public_tweets)
-        for tweet in public_tweets:
-                if tweet.user.screen_name != "tmrdrr":
-                    if tweet.text not in oldtext:
-                        if tweet.text not in backtext:
-                            if "tmrdrr" in tweet.text.lower():
-                                toReply = tweet.user.screen_name
-                                self.tweet(toReply)
-                                oldtext.insert(0, tweet.text)
-                                # print(oldtext)
-                                if len(oldtext) > 15:
-                                    oldtext.pop()
+        with open ("botfood.txt", "a") as botfood_file:
+            for tweet in public_tweets:
+                    if tweet.user.screen_name != "tmrdrr":
+                        if tweet.text not in oldtext:
+                            if tweet.text not in backtext:
+                                if "tmrdrr" in tweet.text.lower():
+                                    toReply = tweet.user.screen_name
+                                    self.tweet(toReply)
+                                    oldtext.insert(0, tweet.text)
+                                    tobeinserted = tweet.text
+                                    tobeinserted = tobeinserted.split(' ', 1)[1]
+                                    botfood_file.write(tobeinserted + "\n")
+
+                                    # print(oldtext)
+                                    if len(oldtext) > 15:
+                                        oldtext.pop()
 
     # def search(self):
     #         message = self.model.make_short_sentence(120)
@@ -72,7 +82,9 @@ class TwitterAPI:
 
     def tweet(self, toReply):
         message = self.model.make_short_sentence(120)
+        messageTwo = self.model.make_short_sentence(140)
         self.api.update_status("@" + toReply + " " + message)
+        self.api.update_status(messageTwo)
 
 
 
@@ -81,14 +93,15 @@ class TwitterAPI:
     def automate(self, delay):
         while True:
             self.timeline()
-            # self.search()
+
             sleep(delay)
 
 
 def main():
     twitter = TwitterAPI("botfood.txt")
     twitter.backlog()
-    twitter.automate(65)
+    twitter.follow()
+    twitter.automate(185)
 
 
 
