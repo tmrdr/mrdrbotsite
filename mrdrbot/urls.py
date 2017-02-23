@@ -5,5 +5,5 @@ urlpatterns = [
   url(r'^$', views.index, name="index"),
   url(r'^startbot$', views.startbot, name="startbot"),
   url(r'^stopbot$', views.stopbot, name="stopbot"),
-  url(r'^aobut$', views.about, name="about")
+  url(r'^about$', views.about, name="about")
 ]
