@@ -15,11 +15,11 @@ class TwitterAPI:
     def __init__(self, botfood):
         self.load_botfood(botfood)
 
-        consumer_key = consumer_key1
-        consumer_secret = consumer_secret1
+        consumer_key = os.environ.get("consumer_key1")
+        consumer_secret = os.environ.get("consumer_secret1")
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-        access_token = access_token1
-        access_token_secret = access_token_secret1
+        access_token = os.environ.get("access_token1")
+        access_token_secret = os.environ.get("access_token_secret1")
         auth.set_access_token(access_token, access_token_secret)
         self.api = tweepy.API(auth)
 
