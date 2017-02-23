@@ -1,7 +1,7 @@
 
 import markovify
 import tweepy
-from env import keys
+
 from random import randint
 from time import sleep
 
@@ -15,11 +15,11 @@ class TwitterAPI:
     def __init__(self, botfood):
         self.load_botfood(botfood)
 
-        consumer_key = keys['consumer_key']
-        consumer_secret = keys['consumer_secret']
+        consumer_key = consumer_key1
+        consumer_secret = consumer_secret1
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-        access_token = keys['access_token']
-        access_token_secret = keys['access_token_secret']
+        access_token = access_token1
+        access_token_secret = access_token_secret1
         auth.set_access_token(access_token, access_token_secret)
         self.api = tweepy.API(auth)
 
