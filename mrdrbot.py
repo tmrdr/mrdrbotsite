@@ -1,6 +1,7 @@
 
 import markovify
 import tweepy
+import os
 
 from random import randint
 from time import sleep
