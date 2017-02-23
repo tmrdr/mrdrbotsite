@@ -1,1 +1,1 @@
-web: gunicorn mrdrbot.wsgi:application --log-file -
+web: gunicorn mrdrbotsite.wsgi:application --log-file -
