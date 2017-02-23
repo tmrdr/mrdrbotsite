@@ -10,7 +10,7 @@ def index(request):
 
 
 def startbot(reqest):
-    mrdrbot.singleton.proc = subprocess.Popen([sys.executable, '/Users/tobiasmurphy/code/mrdrbotsite/mrdrbot.py'])
+    mrdrbot.singleton.proc = subprocess.Popen([sys.executable, 'mrdrbot.py'])
     # print(djangotwitter.singleton.proc)
     return redirect('index')
 
