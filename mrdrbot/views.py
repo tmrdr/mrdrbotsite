@@ -17,3 +17,6 @@ def startbot(reqest):
 def stopbot(request):
     mrdrbot.singleton.proc.kill()
     return redirect('index')
+
+def about(request):
+    return render(request, 'mrdrbot/about.html')
