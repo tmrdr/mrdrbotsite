@@ -8,7 +8,11 @@
                 <ul class="nav navbar-nav">
                     <li id="status">
                         {% for status in botstatus %}
-                          <p>Tmrdrr is running: {{status.onstatus}}</p>
+                          {% if status.onstatus %}
+                            <p>Tmrdrr is running <img class="statuslight" src="../static/img/green.png"></p>
+                          {% else %}
+                            <p>Tmrdrr is not running  <img class="statuslight" src="../static/img/red.png"></p>
+                          {% endif %}
                         {% endfor %}
                     </li>
                     <li id="sven"><a href="http://betweenbots.herokuapp.com/">Link to Sven_dellistrom's site</a></li>

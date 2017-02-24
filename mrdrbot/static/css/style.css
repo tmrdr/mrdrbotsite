@@ -37,10 +37,12 @@ body {
   text-decoration: none;
   color: white;
   margin-left: 50px;
+  display: inline-block;
 }
 
 #status{
   margin-top: 15px;
+  display: inline-block;
 }
 
 #subhead {
@@ -76,4 +78,8 @@ body {
 #convo{
   text-align: center;
   margin: 0 auto;
+}
+.statuslight{
+  height: 10px;
+  width: 10px;
 }

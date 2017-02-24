@@ -38,17 +38,23 @@
             <br> {% endfor %}
         </div>
     </div>
-
-    <form action="/startbot" id="start" method="POST">
-        {% csrf_token %}
-        <input type="submit" class="btn btn-secondary" name="startBot" value="Start Bot">
-    </form>
-
+    {% for status in botstatus %}
+      {% if status.onstatus %}
     <form action="/stopbot" id="stop" method="POST">
         {% csrf_token %}
         <input type="submit" class="btn btn-secondary" name="stopBot" value="Stop Bot">
     </form>
+    {% else %}
+    <form action="/startbot" id="start" method="POST">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-secondary" name="startBot" value="Start Bot">
+    </form>
+    {% endif %}
+  {% endfor %}
 </div>
+
+
+
 
 <div id="expression">
 <h3>Tmrdrr Expressing Himself</h3>
