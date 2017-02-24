@@ -83,3 +83,8 @@ body {
   height: 10px;
   width: 10px;
 }
+footer {
+  text-align: center;
+  padding: 40px;
+    background-color: #3D3B39;
+}
