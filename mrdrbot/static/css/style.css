@@ -30,3 +30,50 @@ body {
 #conversation-well {
   background-color: rgba(63,69,75,0.8);
 }
+.navbar {
+  color: white;
+}
+#sven {
+  text-decoration: none;
+  color: white;
+  margin-left: 50px;
+}
+
+#status{
+  margin-top: 15px;
+}
+
+#subhead {
+  display: inline-block;
+}
+#modal {
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+#drop{
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+#start{
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+#stop{
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+#expression {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 70px;
+}
+
+#convo{
+  text-align: center;
+  margin: 0 auto;
+}

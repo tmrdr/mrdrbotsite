@@ -6,8 +6,12 @@
         <div class="navbar-inverse side-collapse in">
             <nav role="navigation" class="navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'index' %}">Bots</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li id="status">
+                        {% for status in botstatus %}
+                          <p>Tmrdrr is running: {{status.onstatus}}</p>
+                        {% endfor %}
+                    </li>
+                    <li id="sven"><a href="http://betweenbots.herokuapp.com/">Link to Sven_dellistrom's site</a></li>
                 </ul>
             </nav>
         </div>
